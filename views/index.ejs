@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.0/css/bulma.min.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type=text/javascript src=/javascripts/jquery.js></script>
+    <script type=text/javascript src=/javascripts/jSignature.min.js></script>
+   	<script>
+	    $(document).ready(function() {
+	        $("#signature").jSignature()
+	    })
+
+      function fsubmit(){
+        if(rform.name.value == ""){
+          alert("이름을 입력해 주세요.");
+          return false;
+        }
+
+        var sData = $("#signature").jSignature("getData", "svgbase64")
+        rform.signature.value = "data:" + sData[0] + "," + sData[1];
+        document.rform.submit();
+      }
+	</script>
+  </head>
+  <body>
+    <h1 class="title">지원자 입력</h1>
+    <h2 class="subtitle">지원자를 입력하세요.</h2>
+    <form action="/" method="post" name="rform" onsubmit="return fsubmit();">
+      <div class="field">
+        <label class="label">이름</label>
+        <p class="control">
+          <input class="input" type="text" name="name" placeholder="이름">
+        </p>
+      </div>
+
+      <div class="field">
+        <label class="label">연락처</label>
+        <p class="control">
+          <input class="input" type="text" name="contact" placeholder="연락처">
+        </p>
+      </div>
+
+      <div class="field">
+        <label class="label">주소</label>
+        <p class="control">
+          <input class="input" type="text" name="address" placeholder="주소">
+        </p>
+      </div>
+
+      <div class="field">
+        <label class="label">이메일</label>
+        <p class="control">
+          <input class="input" type="text" name="email" placeholder="이메일">
+        </p>
+      </div>
+
+      <div class="field">
+        <label class="label">요구사항</label>
+        <p class="control">
+          <textarea class="textarea" name="msg" placeholder="요구사항"></textarea>
+        </p>
+      </div>
+
+      <div class="field">
+        <label class="label">서명</label>
+        <p class="control">
+          <div id="signature"></div>
+        </p>
+      </div>
+  
+      <input type="hidden" name="signature">
+      <div class="field is-grouped">
+        <p class="control">
+          <button class="button is-primary" type="submit">Submit</button>
+        </p>
+        <p class="control">
+          <button class="button is-link">Cancel</button>
+        </p>
+      </div>
+    </form>
+  </body>
+</html>

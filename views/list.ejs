@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <title>list</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.0/css/bulma.min.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+    <h1 class="title">지원자 목록</h1>
+    <h2 class="subtitle">지원자 현황입니다.</h2>
+    <a class="button" href="/">입력으로</a>
+    <hr>    
+    <ul>
+      <% for(var i = 0; i < uList.length; i++){ %>
+        <li class="box">
+          <article class="media">            
+            <div class="media-content">
+              <div class="content">
+                <p>
+                  <a href="/user/<%= uList[i].name %>"><strong><%= uList[i].name %></strong></a> <small><%= uList[i].contact %></small>
+                  <br>
+                  <%= uList[i].address %>
+                  <br>
+                  <%= uList[i].msg %>
+                  <br>
+                  <small><%= uList[i].createdAt %></small>
+                </p>
+              </div>
+              <nav class="level is-mobile">
+                <div class="level-left">
+                  <a class="level-item">
+                    <span class="icon is-small"><i class="fa fa-reply"></i></span>
+                  </a>
+                  <a class="level-item">
+                    <span class="icon is-small"><i class="fa fa-retweet"></i></span>
+                  </a>
+                  <a class="level-item">
+                    <span class="icon is-small"><i class="fa fa-heart"></i></span>
+                  </a>
+                </div>
+              </nav>
+            </div>
+            <figure class="media-left">
+              <p class="image is-64x64">
+                <img src="<%= uList[i].signature %>">
+              </p>
+            </figure>
+            <div class="media-right">
+              <button class="delete"></button>
+            </div>
+          </article>          
+        </li>
+      <% } %>
+    </ul>
+  </body>
+</html>
